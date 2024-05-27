@@ -1,0 +1,74 @@
+# ==============================
+# Model weights & checkpoints
+# ==============================
+*.h5
+*.hdf5
+*.keras
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.pb
+*.ckpt
+*.index
+*.data-00000-of-*
+checkpoint
+checkpoints/
+saved_model/
+variables/
+
+# ==============================
+# Datasets (raw / train / test)
+# ==============================
+SAT_DATA/
+Un_data/
+Processed_Data/
+Test/
+Models/**/Data/Train/
+Models/**/Data/Test/
+Models/**/test_data/
+Models/**/custom_dataset/
+Models/**/pretrained_models/
+
+# ==============================
+# Unrelated / non-thesis content
+# ==============================
+AIIMS NOTE/
+Bright_Wiredu_Nuakoh_Thesis_2023-24
+Literature
+master-document.pdf
+
+# ==============================
+# Web app
+# ==============================
+Web_APP
+
+# ==============================
+# Environments & caches
+# ==============================
+__pycache__/
+*.pyc
+.ipynb_checkpoints
+venv/
+env/
+.venv/
+
+# ==============================
+# LaTeX build artifacts
+# ==============================
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# ==============================
+# OS / editor junk
+# ==============================
+.DS_Store
+._*
+.Rhistory
+Thumbs.db
+*.txt
