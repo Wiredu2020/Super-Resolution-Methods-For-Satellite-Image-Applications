@@ -1,0 +1,2 @@
+model_checkpoint_path: "SRCNN_weights"
+all_model_checkpoint_paths: "SRCNN_weights"
