@@ -40,7 +40,6 @@ Web_APP/                 Django demo app for running inference
 Bright_Wiredu_Nuakoh_Thesis_2023-24/   Thesis manuscript (LaTeX)
 ```
 
-\* Trained weights, checkpoints, and raw datasets are not tracked in this repository (see `.gitignore`) — only code and result images are versioned.
 
 ## Author
 
