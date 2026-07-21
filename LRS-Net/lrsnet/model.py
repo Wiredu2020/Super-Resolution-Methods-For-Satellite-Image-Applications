@@ -8,7 +8,7 @@ failure mode seen in the MSRCNN experiment:
   1. Depthwise-separable convolutions inside each block instead of full
      3x3 convolutions (~8-9x fewer weights per block at the same width).
   2. A global residual connection: the network predicts a correction on
-     top of a bicubic-upsampled copy of the input, with a linear
+     top of a bilinearly-upsampled copy of the input, with a linear
      (unactivated) output layer, instead of learning absolute pixel
      values through a squashing activation.
 """
@@ -66,11 +66,17 @@ def upsample(inputs, filters, factor=2):
     return x
 
 
-def _bicubic_upsample(inputs, factor):
+def _upsample_skip(inputs, factor):
+    """Coarse base for the global residual skip. Bilinear, not bicubic:
+    XLA has no GPU kernel for ResizeBicubic, so bicubic here crashes
+    model.fit() under Keras 3's default XLA-compiled GPU training step.
+    Bilinear has an XLA GPU kernel and is refined by the learned residual
+    anyway, so there's no meaningful quality cost.
+    """
     def resize(x):
         shape = tf.shape(x)
         new_size = shape[1:3] * factor
-        return tf.image.resize(x, new_size, method="bicubic")
+        return tf.image.resize(x, new_size, method="bilinear")
 
     return layers.Lambda(resize)(inputs)
 
@@ -94,7 +100,7 @@ def build_lrsnet(num_filters=32, num_blocks=6, scale=2, reduction=8):
     x = upsample(x, num_filters, factor=scale)
     residual = layers.Conv2D(3, 3, padding="same", name="sr_residual")(x)
 
-    base = _bicubic_upsample(input_layer, scale)
+    base = _upsample_skip(input_layer, scale)
     output_layer = layers.Add(name="sr_output")([base, residual])
 
     return LRSNetModel(input_layer, output_layer, name="LRS-Net")

@@ -23,6 +23,7 @@ variables/
 SAT_DATA/
 Un_data/
 Processed_Data/
+Processed_Data.zip
 Test/
 Models/**/Data/Train/
 Models/**/Data/Test/
