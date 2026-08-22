@@ -30,7 +30,10 @@ Models/**/Data/Test/
 Models/**/test_data/
 Models/**/custom_dataset/
 Models/**/pretrained_models/
-
+results/models/
+results/tflite/
+results/*.json
+results/*.csv
 # ==============================
 # Unrelated / non-thesis content
 # ==============================
@@ -38,6 +41,7 @@ AIIMS NOTE/
 Bright_Wiredu_Nuakoh_Thesis_2023-24
 Literature
 master-document.pdf
+papers/
 
 # ==============================
 # Web app
